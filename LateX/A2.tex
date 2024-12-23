@@ -1,0 +1,127 @@
+%https://www.overleaf.com/9637873877xxqppwwxbdwv#6dc7ad
+
+% This is a paper template using the LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+\documentclass[runningheads]{llncs}
+%
+% A lot of package loading
+\usepackage[pdftex]{graphicx}
+\usepackage{geometry}
+\usepackage[cmex10]{amsmath}
+\usepackage{array, algpseudocode}
+\usepackage{amsmath, amssymb, amsfonts, parskip, graphicx, verbatim}
+\usepackage{url, hyperref}
+\usepackage{bm, rotating, adjustbox, latexsym}
+\usepackage{tabularx, booktabs}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usepackage{float, setspace, mdframed}
+\usepackage{color, contour, placeins, subfig, cite}
+\usepackage[mathscr]{euscript}
+\usepackage[osf]{mathpazo}
+\usepackage{pgf, tikz, microtype, algorithm}
+\usetikzlibrary{shapes,backgrounds,calc,arrows}
+\usepackage{xcolor, colortbl, dsfont}
+\usepackage{xspace}
+
+
+
+\begin{document}
+%
+\title{NaCo 24/25 assignment 2 report}
+
+\author{First and last name of each student in the group}
+%
+\authorrunning{NaCo 24/25}
+
+\institute{Group number $999$}
+%
+\maketitle % typeset the header of the contribution
+%
+
+\begin{abstract}
+This document contains the instructions and the format for the report required for submission of the practical assignment for the course Natural Computing. 
+\end{abstract}
+
+\section{Introduction}
+This document serves as a \textit{description of the practical assignment} for the course Natural Computing in the academic year 2024/2025, part II. This assignment builds on the work you did in the first part. Here, you will implement your own version of the Artificial Ant Colony Optimization (ACO) algorithm, which you will compare in a \emph{benchmarking study} to the Genetic Algorithm from the previous assignment. You are tasked to implement two variants of the ACO algorithm, including the standard ACO method and the MIN-MAX AS method. 
+
+The task remains to compute the shortest route to visit a set of European capital cities, beginning and ending in Leiden. Both algorithms will be implemented in Python and analyzed for their performance on this task. You will again document and discuss your results in a report formatted as a scientific paper using this template.
+
+% In this assignment, you will go on a trip to visit Europe's capital cities. You will start your trip in Leiden, where you will also return. You will travel via helicopter. As this is not the most economical way to commute, you'll want to travel via the shortest route that visits all cities. You note this is an instance of the Travelling Salesman Problem (TSP), and to \emph{heuristically} compute such a route, you will be using a Genetic Algorithm (GA). 
+
+In this assignment, you will work with Python and Latex. You will be asked to provide the following:
+\begin{itemize}
+   \item An implementation of Artificial Ant Colony Optimization designed to solve TSP. You will be provided with an implementation of the problem in Python as supplementary material. 
+   \item A report, written and formatted as a scientific paper, using this template, containing:
+\begin{itemize}
+    \item A clear description of your implementation of ACO, specifically focussing on the differences between the two versions you implemented. 
+    \item A literature review of a paper applying ACO to an optimization problem.
+    \item A benchmarking study comparing your GA to ACO:
+    \begin{itemize}
+        \item Data collection using IOHexperimenter for both the two versions of your GA and two versions of ACO. 
+        \item Standardized experimental setup; use the same number of function evaluations for each method. Use several trials for each method to ensure statistically interpretable results.
+        \item Visualization with IOHAnalyzer, results should include at least one convergence plot for either the fixed target or fixed budget perspective. 
+        \item Discussion of the results.
+    \end{itemize}
+\end{itemize}
+\end{itemize}
+
+To help structure your report, we provide a \textit{brief report outline} in this document. Please complete the following sections with your results, explanations, and conclusions. This includes the abstract and this introduction (i.e., replace its contents!). For this section: introduce what the paper is about and provide a background to any relevant literature (using proper citations, e.g., ~\cite{holland1992genetic}).
+
+\section{Literature Study}
+Search the literature for one paper that applies Ant Colony Optimization. This can be from any discipline, i.e., social network analysis, biology, sociology, etc. Minor students are encouraged to take the lead in writing this section.
+Summarize the paper, describe the problem, and add any relevant literature to this section. Be
+sure to answer at least the following questions about the paper:
+\begin{itemize}
+    \item How was the algorithm applied? Describe the field and context.
+    \item Why did the researchers choose to apply ACO for their application, and were there any alternatives?
+    \item Was their approach successful? Interpret their results.
+    \item Give your opinion on their approach. Would you have used the same algorithm in their
+situation?
+    \item How would you improve on their setup?
+\end{itemize}
+
+\section{Problem Description (This part is unchanged)}\label{sect:descr}
+The task is to find the shortest possible route to visit all European capital cities, starting and ending in Leiden, Netherlands. Summarize this problem in your own words. You should include a proper (mathematical) problem definition for the TSP in your paper. Be sure to define it to be compatible with the GA you will implement. \textbf{Check that your definition also works for ACO!}
+
+\textbf{Note:} To compute the distance between two cities $c_1$ and $c_2$, we will use the Haversine distance, denoted by $d_H(c_1, c_2)$ in your report. 
+
+\section{Methods}\label{sect:impl}
+In this section, you will provide an overview of the two algorithms implemented: the Genetic Algorithm from Assignment 1 and your new implementation of Ant Colony Optimization. 
+
+\subsection{Genetic Algorithm}
+Briefly describe the GA, mainly if you have made modifications or optimizations since Assignment 1. Ensure you describe the operators used, i.e., your choice of mutation operators and any enhancements you included for benchmarking. This can be a brief section; only a summary of the method A1 will be sufficient. 
+
+\subsection{Ant Colony Optimization}
+Describe the variants of the ACO algorithm to solve the TSP. Describe your design choices in detail, including the following components:
+\begin{itemize}
+    \item \textbf{Pheromone Initialization and Update}: Describe the initial pheromone levels and how they will be updated based on ant traversal and solution quality.
+    \item \textbf{Heuristic Function}: Specify any heuristic information that influences ant choices.
+    \item \textbf{Algorithm Parameters}: Discuss the main parameters of ACO, including pheromone decay, the influence of heuristics, the number of ants per generation, etc.
+\end{itemize}
+
+
+\section{Results}
+Include a subsection describing your experimental setup. Mention the number of runs, the maximum number of evaluations, parameter settings, and how these may impact each algorithm’s behavior. In your results, compare the two variants of GA, each with a different mutation operator, to each other and the two variants of ACO you implemented here. Interpret your results by discussing the following:
+
+\begin{itemize}
+    \item \textbf{Comparison of GA and ACO}: Discuss which algorithm performed better in the benchmarking study and compare their convergence over time. 
+    \item \textbf{Strengths and Limitations}: Reflect on the strengths and weaknesses of each algorithm based on the TSP instance.
+    \item \textbf{Improvements}: Suggest possible improvements to both algorithms, including alternative configurations, parameter tuning, or different operators for GA or ACO.
+\end{itemize}
+
+\section{Conclusion}\label{sec:conclusion}
+Write a \textbf{short} conclusion summarizing the most important findings of this assignment. 
+
+\appendix
+\section{Appendix}
+\subsection{Submission, review and grading}\label{sec:submission}
+For this assignment, \textbf{you should submit the full report in this template}. Don’t forget to proofread your report and correctly label and format figures and tables. Please do not exceed the \textbf{limit of 8 pages} for this report, excluding references.
+
+Submission should be done on Brightspace, including your PDF report and your Python file code. Ensure the code is readable: clear variable names, comments, etc. 
+
+\bibliographystyle{splncs04}
+\bibliography{bibliography.bib}
+
+\end{document}
